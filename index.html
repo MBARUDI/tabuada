@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa Tabuada</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5 text-center">
+        <h1 class="text-center">Programa Tabuada</h1>
+        <div class="form-group text-center"></div>
+            <label for="numero">Escolha um número:</label>
+            <input type="number" class="form-control mx-auto" id="numero" min="1" max="10" style="max-width: 200px;">
+        </div>
+        <div id="resultado" class="mt-4 text-center"></div>
+        <div class="d-flex justify-content-center mt-3">
+            <button class="btn btn-primary mt-3 mr-2" onclick="mostrarTabuada()">Mostrar Tabuada</button>
+            <button class="btn btn-secondary mt-3" onclick="limparResultados()">Limpar Resultados</button>
+        </div>
+    </div>
+    <script>
+        function mostrarTabuada() {
+            const numero = document.getElementById('numero').value;
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = ''; // Clear previous results
+
+            if (numero < 1 || numero > 10) {
+                resultadoDiv.innerHTML = '<div class="alert alert-danger">Por favor, escolha um número entre 1 e 10.</div>';
+                return;
+            }
+
+            for (let i = 1; i <= 10; i++) {
+                const resultado = numero * i;
+                const card = document.createElement('div');
+                card.className = 'card mb-2';
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+                cardBody.textContent = `${numero} x ${i} = ${resultado}`;
+                card.appendChild(cardBody);
+                resultadoDiv.appendChild(card);
+            }
+        }
+
+        function limparResultados() {
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = ''; // Clear results
+        }
+    </script>
+</body>
+</html>
